@@ -1,3 +1,6 @@
+# react-review
+Repositories that start in the plain state and grow until they understand the applied use of React.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
