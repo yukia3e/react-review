@@ -1,22 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { FC, useEffect } from 'react';
+import { Redirect, Route, Switch, useHistory, useLocation } from 'react-router';
+
+import Home from 'components/pages/Home';
+import Characters from 'components/pages/Characters';
 import './App.css';
 
-const App: React.FC = () => (
-  <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>Hello, World!</p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </header>
-  </div>
-);
+const App: FC = () => {
+  const { hash, pathname } = useLocation();
+  const { action } = useHistory();
+
+  useEffect(() => {
+    if (!hash || action !== 'POP') {
+      window.scrollTo(0, 0);
+    }
+  }, [action, hash, pathname]);
+
+  return (
+    <div className="container">
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/characters" component={Characters} />
+        <Redirect to="/" />;
+      </Switch>
+    </div>
+  );
+};
 
 export default App;
