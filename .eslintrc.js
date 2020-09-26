@@ -94,6 +94,10 @@ module.exports = {
     ],
     'no-use-before-define': 'off',
     'no-console': 'off',
+    '@typescript-eslint/no-unsafe-call': 1,
+    '@typescript-eslint/no-unsafe-member-access': 1,
+    '@typescript-eslint/no-unsafe-return': 1,
+    '@typescript-eslint/no-unsafe-assignment': 1,
   },
   overrides: [
     {

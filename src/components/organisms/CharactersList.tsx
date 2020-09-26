@@ -1,24 +1,19 @@
 import React, { FC } from 'react';
-import { Header, Icon, Item } from 'semantic-ui-react';
+import { Icon, Item } from 'semantic-ui-react';
 
-export type Character = {
-  id: number;
-  name: string;
-  grade: number;
-  height?: number;
-};
+import Spinner from 'components/molecules/Spinner';
+import { Character } from 'data/characters';
 
 type Props = {
-  school: string;
   characters: Character[];
+  isLoading?: boolean;
 };
 
-const CharacterList: FC<Props> = (props) => {
-  const { school, characters } = props;
-
-  return (
-    <>
-      <Header as="h2">{school}</Header>
+const CharactersList: FC<Props> = ({ characters = [], isLoading = false }) => (
+  <>
+    {isLoading ? (
+      <Spinner />
+    ) : (
       <Item.Group>
         {characters.map((character) => (
           <Item key={character.id}>
@@ -27,15 +22,15 @@ const CharacterList: FC<Props> = (props) => {
               <Item.Header>{character.name}</Item.Header>
               <Item.Meta>{character.grade}年生</Item.Meta>
               <Item.Meta>
-                {character.height ?? character.height}
+                {character.height ?? '???'}
                 cm
               </Item.Meta>
             </Item.Content>
           </Item>
         ))}
       </Item.Group>
-    </>
-  );
-};
+    )}
+  </>
+);
 
-export default CharacterList;
+export default CharactersList;
